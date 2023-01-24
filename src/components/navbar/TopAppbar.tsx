@@ -40,7 +40,7 @@ const TopAppBar = (props: Props) => {
           onClick={() => handleDrawerOpen()}
           edge="start"
           sx={{
-            mr: 2,
+            mr: 0,
             ...(props.open && { display: "none" }),
             display: { sm: "none", xs: "none", md: "block" },
           }}
@@ -61,8 +61,8 @@ const TopAppBar = (props: Props) => {
           <MenuIcon />
         </IconButton>
 
-        <Typography variant="h6" noWrap component="div">
-          Test bla bla
+        <Typography variant="h5" fontStyle={"italic"} noWrap component="div">
+          myClock
         </Typography>
         <S.MenuIcon>
           <Mail sx={{ fontSize: 30 }} />
@@ -78,12 +78,8 @@ const TopAppBar = (props: Props) => {
       </S.NavBar>
 
       <NavMenu open={open} anchor={anchorEl} navMenuClose={navMenuClose} />
-
     </S.TopAppBar>
   );
 };
 
-        // anchorEl={anchorEl}
-        // open={open}
-        // onClose={() => setOpen(false)}
 export { TopAppBar };
