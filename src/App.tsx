@@ -48,7 +48,7 @@ const App = () => {
     setOpen(false);
   };
 
-  const themeMode = (theme: string): void => {
+  const handlerThemeMode = (theme: string): void => {
     setMode(theme);
   };
 
@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <TopMobile />
+      <TopMobile mode={mode} handlerThemeMode={handlerThemeMode} />
       <Box sx={{ display: "flex", backgroundColor: "background.default" }}>
         <CssBaseline />
 
@@ -92,7 +92,7 @@ const App = () => {
 
             <Divider />
 
-            <SidebarItems mode={mode} themeMode={themeMode} />
+            <SidebarItems mode={mode} themeMode={handlerThemeMode} />
           </Drawer>
         </Box>
 

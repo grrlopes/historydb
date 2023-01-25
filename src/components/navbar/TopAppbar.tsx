@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { Avatar, IconButton, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Mail } from "@mui/icons-material";
 import * as S from "./Styles";

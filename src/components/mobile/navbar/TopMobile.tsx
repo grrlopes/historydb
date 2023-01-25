@@ -1,13 +1,22 @@
 import { Box, SwipeableDrawer } from "@mui/material";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { SidebarItems } from "../../sidebar/SidebarItems";
 
 type Anchor = "top";
 
-const TopMobile = () => {
+interface Props {
+  mode: string;
+  handlerThemeMode(mode: string): void;
+}
+
+const TopMobile: FC<Props> = (props: Props) => {
   const [state, setState] = useState({
     top: false,
   });
+
+  const handlerThemeMode = (): void => {
+    props.handlerThemeMode(props.mode === "light" ? "dark" : "light");
+  };
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -31,7 +40,10 @@ const TopMobile = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <SidebarItems mode="light" />
+      <SidebarItems
+        mode={props.mode}
+        themeMode={() => handlerThemeMode()}
+      />
     </Box>
   );
 

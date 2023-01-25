@@ -1,6 +1,6 @@
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 interface Props {
   open: boolean;
@@ -12,10 +12,6 @@ const NavMenu: FC<Props> = (props: Props) => {
   const menuClose = () => {
     props.navMenuClose(false);
   };
-
-  useEffect(() => {
-    console.log(props.open);
-  });
 
   return (
     <Menu
