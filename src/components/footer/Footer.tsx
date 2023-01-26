@@ -10,13 +10,9 @@ const Footer = (props: Props) => {
     <S.FooterBar
       position="fixed"
       open={props.open}
-      sx={{ top: "auto", bottom: 0 }}
+      sx={{ top: "auto", bottom: 0, height: "20px"}}
     >
-      <Toolbar>
-        <Typography>
-          Footer
-        </Typography>
-      </Toolbar>
+      <Toolbar />
     </S.FooterBar>
   );
 };

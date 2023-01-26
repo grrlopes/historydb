@@ -12,6 +12,7 @@ import {
   PeopleRounded,
   WatchLaterRounded,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   mode: string;
@@ -19,16 +20,18 @@ interface Props {
 }
 
 const SidebarItems = (props: Props) => {
+  const navigation = useNavigate();
+
   return (
     <Box>
       <List>
-        {["Add Tracking", "History", "Community"].map((text) => (
+        {["Tracking", "History", "Community"].map((text) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigation(text.toLowerCase())}>
               <ListItemIcon>
                 {(() => {
                   switch (text) {
-                    case "Add Tracking":
+                    case "Tracking":
                       return <WatchLaterRounded />;
                     case "History":
                       return <ModeNight />;

@@ -21,6 +21,9 @@ const Content = styled("main", {
     }),
     marginLeft: 0,
   }),
+  [theme.breakpoints.down("md")]: {
+    marginLeft: 0,
+  },
 }));
 
 export { Content };

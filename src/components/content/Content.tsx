@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import { Outlet } from "react-router-dom";
 import { DrawerHeader } from "../../shared/drawerheader/Styles";
 import * as S from "./Styles";
 
@@ -24,6 +25,8 @@ const Content = (props: Props) => {
         varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt.
         Lorem donec massa sapien faucibus et molestie ac.
       </Typography>
+
+        <Outlet />
     </S.Content>
   );
 };
