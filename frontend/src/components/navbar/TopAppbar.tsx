@@ -62,7 +62,7 @@ const TopAppBar = (props: Props) => {
         </IconButton>
 
         <Typography variant="h5" fontStyle={"italic"} noWrap component="div">
-          myClock
+          Historydb
         </Typography>
         <S.MenuIcon>
           <Mail sx={{ fontSize: 30 }} />
