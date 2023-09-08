@@ -84,14 +84,15 @@ const App = () => {
           >
             <S.DrawerHeader>
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "ltr"
-                  ? <ChevronLeftIcon />
-                  : <ChevronRightIcon />}
+                {theme.direction === "ltr" ? (
+                  <ChevronLeftIcon />
+                ) : (
+                  <ChevronRightIcon />
+                )}
               </IconButton>
             </S.DrawerHeader>
 
             <Divider />
-
             <SidebarItems mode={mode} themeMode={handlerThemeMode} />
           </Drawer>
         </Box>

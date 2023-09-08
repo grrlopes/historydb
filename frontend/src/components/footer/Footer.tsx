@@ -1,4 +1,4 @@
-import { Toolbar, Typography } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import * as S from "./Styles";
 
 interface Props {
@@ -10,7 +10,7 @@ const Footer = (props: Props) => {
     <S.FooterBar
       position="fixed"
       open={props.open}
-      sx={{ top: "auto", bottom: 0, height: "20px"}}
+      sx={{ top: "auto", bottom: 0, height: "20px" }}
     >
       <Toolbar />
     </S.FooterBar>

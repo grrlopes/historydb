@@ -26,8 +26,7 @@ const TopAppBar = styled(MuiAppBar, {
 }));
 
 const NavBar = styled(Toolbar)({
-  display: "flex",
-  justifyContent: "space-between",
+  display: "grid",
 });
 
 const MenuIcon = styled(Box)(({ theme }) => ({
