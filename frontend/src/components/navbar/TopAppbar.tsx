@@ -37,56 +37,60 @@ const TopAppBar = (props: Props) => {
     <S.TopAppBar position="fixed" open={props.open}>
       <S.NavBar>
         <Grid container spacing={2}>
-          <Grid item xs={6} md={5} sx={{display: "flex", alignItems: "center"}}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={() => handleDrawerOpen()}
-              edge="start"
-              sx={{
-                mr: 0,
-                ...(props.open && { display: "none" }),
-                display: { sm: "none", xs: "none", md: "block" },
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="open mobile"
-              onClick={() => handlerNavMobileOpen()}
-              edge="end"
-              sx={{
-                mr: 0,
-                ...(props.open && { display: "none" }),
-                display: { sm: "block", xs: "block", md: "none" },
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <SearchAppBar />
-          </Grid>
-          <Grid item xs={6} md={7} sx={{display: "flex",  justifyContent:"space-between"}}>
-            <Typography
-              variant="h5"
-              fontStyle={"italic"}
-              noWrap
-              component="div"
-            >
-              Historydb
-            </Typography>
-
-            <S.MenuIcon>
-              <Mail sx={{ fontSize: 30 }} />
-              <Avatar
-                sx={{ bgcolor: "deepskyblue" }}
-                alt={"Dummy"}
-                src="https://artdependence.com/media/9893/unnamed.jpg"
-                onClick={() => handleClick}
+          <Grid item xs={6} md={5}>
+            <S.Grad>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={() => handleDrawerOpen()}
+                edge="start"
+                sx={{
+                  mr: 0,
+                  ...(props.open && { display: "none" }),
+                  display: { sm: "none", xs: "none", md: "block" },
+                }}
               >
-                D
-              </Avatar>
-            </S.MenuIcon>
+                <MenuIcon />
+              </IconButton>
+              <IconButton
+                color="inherit"
+                aria-label="open mobile"
+                onClick={() => handlerNavMobileOpen()}
+                edge="end"
+                sx={{
+                  mr: 0,
+                  ...(props.open && { display: "none" }),
+                  display: { sm: "block", xs: "block", md: "none" },
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <SearchAppBar />
+            </S.Grad>
+          </Grid>
+          <Grid item xs={6} md={7}>
+            <S.Grad justifyContent={"space-between"}>
+              <Typography
+                variant="h5"
+                fontStyle={"italic"}
+                noWrap
+                component="div"
+              >
+                Historydb
+              </Typography>
+
+              <S.MenuIcon>
+                <Mail sx={{ fontSize: 30 }} />
+                <Avatar
+                  sx={{ bgcolor: "deepskyblue" }}
+                  alt={"Dummy"}
+                  src="https://artdependence.com/media/9893/unnamed.jpg"
+                  onClick={() => handleClick}
+                >
+                  D
+                </Avatar>
+              </S.MenuIcon>
+            </S.Grad>
           </Grid>
         </Grid>
       </S.NavBar>

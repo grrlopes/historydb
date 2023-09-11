@@ -1,4 +1,4 @@
-import { Box, styled, Toolbar } from "@mui/material";
+import { Box, Grid, styled, Toolbar } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 
 const drawerWidth = 200;
@@ -29,6 +29,17 @@ const NavBar = styled(Toolbar)({
   display: "grid",
 });
 
+const Grad = styled(Grid)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.6rem",
+  },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "1rem",
+  },
+}));
+
 const MenuIcon = styled(Box)(({ theme }) => ({
   display: "none",
   alignItems: "center",
@@ -41,4 +52,4 @@ const MenuIcon = styled(Box)(({ theme }) => ({
   },
 }));
 
-export { MenuIcon, NavBar, TopAppBar };
+export { Grad, MenuIcon, NavBar, TopAppBar };
