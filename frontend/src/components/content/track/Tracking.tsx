@@ -2,13 +2,15 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useQuery } from "@tanstack/react-query";
 import { data, results } from "../../../helper/interfaces";
-import { getDatas } from "../../../services/getDatas";
+import { getDocuments } from "../../../services/getDocuments";
 import * as S from "./Styles";
 
 const Tracking = () => {
   const { isLoading, isError, error, data } = useQuery<data>({
-    queryKey: ["posts"],
-    queryFn: getDatas,
+    queryKey: ["documents"],
+    queryFn: () => {
+      return getDocuments("faffas");
+    },
   });
 
   if (isLoading) return "Loading";
@@ -17,7 +19,7 @@ const Tracking = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {data.results.map((todo: results) => (
+        {data.hits.map((todo: results) => (
           <Grid xs={6} md={4}>
             <S.Papel key={todo.id}>
               {"Friday 01 2023"}

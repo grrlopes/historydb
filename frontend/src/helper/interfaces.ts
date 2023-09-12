@@ -12,6 +12,7 @@ interface data {
   offset: number;
   limit: number;
   total: number;
+  hits: [results];
   results: [results];
 }
 

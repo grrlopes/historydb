@@ -26,7 +26,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const SearchInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
@@ -43,4 +43,4 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export { Search, SearchIconWrapper, StyledInputBase };
+export { Search, SearchIconWrapper, SearchInputBase };
