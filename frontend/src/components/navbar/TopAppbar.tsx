@@ -2,16 +2,25 @@ import { Avatar, IconButton, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Mail } from "@mui/icons-material";
 import * as S from "./Styles";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import { NavMenu } from "../../shared/menu/Menu";
 import { SearchAppBar } from "../../shared/search/Search";
 import Grid from "@mui/material/Grid";
+import { HdbContext } from "../../store/hdbCtx";
 
 interface Props {
   open?: boolean;
   handleDrawerOpen(): void;
   handlerNavMobileOpen(): void;
 }
+
+const status = useContext(HdbContext);
+
+const ArchiveStatus = (value: string) => {
+  status?.setStatus({
+    active: value,
+  });
+};
 
 const TopAppBar = (props: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -31,6 +40,10 @@ const TopAppBar = (props: Props) => {
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handlerSearch = (search: string): void => {
+    console.log(search);
   };
 
   return (
@@ -65,7 +78,7 @@ const TopAppBar = (props: Props) => {
               >
                 <MenuIcon />
               </IconButton>
-              <SearchAppBar />
+              <SearchAppBar handlerSearch={handlerSearch} />
             </S.Grad>
           </Grid>
           <Grid item xs={6} md={7}>

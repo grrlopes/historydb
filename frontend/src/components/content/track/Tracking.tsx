@@ -9,11 +9,11 @@ const Tracking = () => {
   const { isLoading, isError, error, data } = useQuery<data>({
     queryKey: ["documents"],
     queryFn: () => {
-      return getDocuments("faffas");
+      return getDocuments("");
     },
   });
 
-  if (isLoading) return "Loading";
+  if (isLoading) return <b>Loading</b>;
   if (isError) return `Error: ${error}`;
 
   return (
