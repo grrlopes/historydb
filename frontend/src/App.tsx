@@ -20,6 +20,7 @@ import * as S from "./shared/drawerheader/Styles";
 import { Footer } from "./components/footer/Footer";
 import { ThemeProvider } from "@mui/system";
 import { TopMobile } from "./components/mobile/navbar/TopMobile";
+import { HdbProvider } from "./store/hdbCtx";
 
 const drawerWidth = 200;
 
@@ -57,51 +58,52 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <TopMobile mode={mode} handlerThemeMode={handlerThemeMode} />
-      <Box sx={{ display: "flex", backgroundColor: "background.default" }}>
-        <CssBaseline />
-
-        <TopAppBar
-          open={open}
-          handleDrawerOpen={handleDrawerOpen}
-          handlerNavMobileOpen={handlerNavMobileOpen}
-        />
-
-        <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
-          <Drawer
-            sx={{
-              width: drawerWidth,
-              flexShrink: 0,
-              "& .MuiDrawer-paper": {
-                width: drawerWidth,
-                boxSizing: "border-box",
-              },
-            }}
-            variant="persistent"
-            anchor="left"
+    <HdbProvider>
+      <ThemeProvider theme={darkTheme}>
+        <TopMobile mode={mode} handlerThemeMode={handlerThemeMode} />
+        <Box sx={{ display: "flex", backgroundColor: "background.default" }}>
+          <CssBaseline />
+          <TopAppBar
             open={open}
-          >
-            <S.DrawerHeader>
-              <IconButton onClick={handleDrawerClose}>
-                {theme.direction === "ltr" ? (
-                  <ChevronLeftIcon />
-                ) : (
-                  <ChevronRightIcon />
-                )}
-              </IconButton>
-            </S.DrawerHeader>
+            handleDrawerOpen={handleDrawerOpen}
+            handlerNavMobileOpen={handlerNavMobileOpen}
+          />
 
-            <Divider />
-            <SidebarItems mode={mode} themeMode={handlerThemeMode} />
-          </Drawer>
+          <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
+            <Drawer
+              sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                "& .MuiDrawer-paper": {
+                  width: drawerWidth,
+                  boxSizing: "border-box",
+                },
+              }}
+              variant="persistent"
+              anchor="left"
+              open={open}
+            >
+              <S.DrawerHeader>
+                <IconButton onClick={handleDrawerClose}>
+                  {theme.direction === "ltr" ? (
+                    <ChevronLeftIcon />
+                  ) : (
+                    <ChevronRightIcon />
+                  )}
+                </IconButton>
+              </S.DrawerHeader>
+
+              <Divider />
+              <SidebarItems mode={mode} themeMode={handlerThemeMode} />
+            </Drawer>
+          </Box>
+
+          <Content open={open} />
+
+          <Footer open={open} />
         </Box>
-
-        <Content open={open} />
-
-        <Footer open={open} />
-      </Box>
-    </ThemeProvider>
+      </ThemeProvider>
+    </HdbProvider>
   );
 };
 
