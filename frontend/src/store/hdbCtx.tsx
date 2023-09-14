@@ -7,7 +7,7 @@ import {
 } from "react";
 
 type HdbFilter = {
-  search?: string;
+  search: string;
 };
 
 type HdbType = {
@@ -19,7 +19,7 @@ type HdbContextProviderProps = {
   children: ReactNode;
 };
 
-const HdbContext = createContext<HdbType | null>(null);
+const HdbContext = createContext<HdbType | any>("");
 
 const HdbProvider = ({ children }: HdbContextProviderProps) => {
   const [filter, setFilter] = useState<HdbFilter>({ search: "" });

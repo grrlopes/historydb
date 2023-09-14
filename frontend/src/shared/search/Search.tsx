@@ -4,7 +4,7 @@ import * as S from "./Styles";
 import { useEffect, useState } from "react";
 
 interface Props {
-  handlerSearch(filter: string): void;
+  handlerSearch(filter?: string): void;
 }
 
 const SearchAppBar = (props: Props) => {

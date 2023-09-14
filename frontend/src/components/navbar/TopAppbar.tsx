@@ -14,17 +14,16 @@ interface Props {
   handlerNavMobileOpen(): void;
 }
 
-const status = useContext(HdbContext);
-
-const ArchiveStatus = (value: string) => {
-  status?.setStatus({
-    active: value,
-  });
-};
-
 const TopAppBar = (props: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const filter = useContext(HdbContext);
+
+  const hdbFilterCtx = (value: string) => {
+    filter?.setFilter({
+      search: value,
+    });
+  };
 
   const handleDrawerOpen = (): void => {
     props.handleDrawerOpen();
@@ -43,7 +42,7 @@ const TopAppBar = (props: Props) => {
   };
 
   const handlerSearch = (search: string): void => {
-    console.log(search);
+    hdbFilterCtx(search);
   };
 
   return (

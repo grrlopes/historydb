@@ -1,17 +1,26 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useQuery } from "@tanstack/react-query";
-import { data, results } from "../../../helper/interfaces";
+import { useContext, useEffect, useState } from "react";
+import { datas, results } from "../../../helper/interfaces";
 import { getDocuments } from "../../../services/getDocuments";
+import { HdbContext } from "../../../store/hdbCtx";
 import * as S from "./Styles";
 
 const Tracking = () => {
-  const { isLoading, isError, error, data } = useQuery<data>({
+  const searcher = useContext(HdbContext);
+  const [filter, setFilter] = useState<string>("");
+
+  const { data, isLoading, isError, error } = useQuery<datas>({
     queryKey: ["documents"],
     queryFn: () => {
-      return getDocuments("");
+      return getDocuments(filter);
     },
   });
+
+  useEffect(() => {
+    setFilter(searcher.filter.search);
+  }, [searcher.filter.search]);
 
   if (isLoading) return <b>Loading</b>;
   if (isError) return `Error: ${error}`;

@@ -8,7 +8,7 @@ interface results {
   updated_at: any;
 }
 
-interface data {
+interface datas {
   offset: number;
   limit: number;
   total: number;
@@ -16,4 +16,4 @@ interface data {
   results: [results];
 }
 
-export type { data, results };
+export type { datas, results };
