@@ -1,4 +1,4 @@
-import { Toolbar } from "@mui/material";
+import { Paginator } from "../pagination/Pagination";
 import * as S from "./Styles";
 
 interface Props {
@@ -10,9 +10,17 @@ const Footer = (props: Props) => {
     <S.FooterBar
       position="fixed"
       open={props.open}
-      sx={{ top: "auto", bottom: 0, height: "20px" }}
+      sx={{
+        top: "auto",
+        bottom: 0,
+        height: "36px",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <Toolbar />
+      <Paginator />
     </S.FooterBar>
   );
 };
