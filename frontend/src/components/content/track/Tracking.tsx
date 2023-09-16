@@ -11,8 +11,8 @@ const Tracking = () => {
   const searcher = useContext(HdbContext);
   const [filter, setFilter] = useState<string>("");
 
-  const { data, isLoading, isError, error } = useQuery<datas>({
-    queryKey: ["documents"],
+  const { data, isLoading, isError } = useQuery<datas>({
+    queryKey: ["documents", { filter }],
     queryFn: () => {
       return getDocuments(filter);
     },
@@ -22,35 +22,33 @@ const Tracking = () => {
     setFilter(searcher.filter.search);
   }, [searcher.filter.search]);
 
-  if (isLoading) return <b>Loading</b>;
-  if (isError) return `Error: ${error}`;
+  const renderCardContent = (todo: results) => (
+    <CardContent sx={{ height: "18em" }}>
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        Project: {todo.title}
+      </Typography>
+      <Typography variant="h5" component="div"></Typography>
+      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        Manager: {todo.author}
+      </Typography>
+      <Typography variant="body2">{todo.command}</Typography>
+    </CardContent>
+  );
+
+  const renderGridItem = (todo: results) => (
+    <Grid xs={6} md={4} key={todo.id}>
+      <S.Papel>
+        {"Friday 01 2023"}
+        <Card>{renderCardContent(todo)}</Card>
+      </S.Papel>
+    </Grid>
+  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {data.hits.map((todo: results) => (
-          <Grid xs={6} md={4}>
-            <S.Papel key={todo.id}>
-              {"Friday 01 2023"}
-              <Card>
-                <CardContent sx={{ height: "18em" }}>
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Project: {todo.title}
-                  </Typography>
-                  <Typography variant="h5" component="div"></Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    Manager: {todo.author}
-                  </Typography>
-                  <Typography variant="body2">{todo.command}</Typography>
-                </CardContent>
-              </Card>
-            </S.Papel>
-          </Grid>
-        ))}
+        {isError && <b>Fetching data error</b>}
+        {!isLoading && data?.hits.map((todo: results) => renderGridItem(todo))}
       </Grid>
     </Box>
   );
