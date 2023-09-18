@@ -1,16 +1,16 @@
 import { TablePagination } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { HdbContext } from "../../store/hdbCtx";
+import { HdbContext, HdbType } from "../../store/hdbCtx";
 
 const Paginator = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const paginator = useContext(HdbContext);
+  const paginator = useContext<HdbType>(HdbContext);
 
-  const hdbPagerCtx = (vPage: number, vRowPage: number) => {
+  const hdbPagerCtx = (offset: number, vRowPage: number) => {
     paginator?.setPager({
-      page: vPage,
-      rowsPage: vRowPage,
+      limit: vRowPage,
+      offset: offset,
     });
   };
 
@@ -34,7 +34,7 @@ const Paginator = () => {
   return (
     <TablePagination
       component="div"
-      count={100}
+      count={paginator.total.counter}
       page={page}
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}

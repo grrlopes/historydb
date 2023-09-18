@@ -11,7 +11,7 @@ interface results {
 interface datas {
   offset: number;
   limit: number;
-  total: number;
+  estimatedTotalHits: number;
   hits: [results];
   results: [results];
 }

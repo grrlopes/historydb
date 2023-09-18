@@ -4,23 +4,34 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
 import { datas, results } from "../../../helper/interfaces";
 import { getDocuments } from "../../../services/getDocuments";
-import { HdbContext } from "../../../store/hdbCtx";
+import { HdbContext, HdbType } from "../../../store/hdbCtx";
 import * as S from "./Styles";
 
 const Tracking = () => {
-  const searcher = useContext(HdbContext);
+  const searcher = useContext<HdbType>(HdbContext);
+  const limit = searcher.pager.limit;
+  const offset = searcher.pager.offset;
   const [filter, setFilter] = useState<string>("");
 
   const { data, isLoading, isError } = useQuery<datas>({
-    queryKey: ["documents", { filter }],
+    queryKey: ["documents", { filter, limit, offset }],
     queryFn: () => {
-      return getDocuments(filter);
+      return getDocuments(filter, limit, offset);
     },
   });
 
+  const counter = () => {
+    if (data?.estimatedTotalHits) {
+      searcher?.setTotal({
+        counter: data?.estimatedTotalHits,
+      });
+    }
+  };
+
   useEffect(() => {
     setFilter(searcher.filter.search);
-  }, [searcher.filter.search]);
+    counter();
+  }, [searcher.filter.search, data?.estimatedTotalHits]);
 
   const renderCardContent = (todo: results) => (
     <CardContent sx={{ height: "18em" }}>
