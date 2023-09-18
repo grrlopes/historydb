@@ -8,6 +8,8 @@ import {
 
 type HdbFilter = {
   search: string;
+  page: number;
+  rowsPage: number;
 };
 
 type HdbType = {
@@ -22,7 +24,11 @@ type HdbContextProviderProps = {
 const HdbContext = createContext<HdbType | any>("");
 
 const HdbProvider = ({ children }: HdbContextProviderProps) => {
-  const [filter, setFilter] = useState<HdbFilter>({ search: "" });
+  const [filter, setFilter] = useState<HdbFilter>({
+    search: "",
+    page: 0,
+    rowsPage: 0,
+  });
   return (
     <HdbContext.Provider value={{ filter, setFilter }}>
       {children}
