@@ -3,23 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { HdbContext } from "../../store/hdbCtx";
 
 const Paginator = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const paginator = useContext(HdbContext);
 
   const hdbPagerCtx = (vPage: number, vRowPage: number) => {
-    paginator?.setFilter({
+    paginator?.setPager({
       page: vPage,
       rowsPage: vRowPage,
     });
   };
 
-  useEffect(() => {
-    hdbPagerCtx(page, rowsPerPage);
-  }, [page, rowsPerPage]);
-
   const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+    _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     setPage(newPage);
@@ -30,6 +26,10 @@ const Paginator = () => {
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
+
+  useEffect(() => {
+    hdbPagerCtx(page, rowsPerPage);
+  }, [page, rowsPerPage]);
 
   return (
     <TablePagination
