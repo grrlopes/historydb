@@ -34,7 +34,7 @@ const Tracking = () => {
   }, [searcher.filter.search, data?.estimatedTotalHits]);
 
   const renderCardContent = (todo: results) => (
-    <CardContent sx={{ height: "18em" }}>
+    <CardContent sx={{ height: "16em" }}>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         Project: {todo.title}
       </Typography>

@@ -61,7 +61,7 @@ const App = () => {
     <HdbProvider>
       <ThemeProvider theme={darkTheme}>
         <TopMobile mode={mode} handlerThemeMode={handlerThemeMode} />
-        <Box sx={{ display: "flex", backgroundColor: "background.default" }}>
+        <Box sx={{ display: "flex", backgroundColor: "background.default", paddingBottom: "2em" }}>
           <CssBaseline />
           <TopAppBar
             open={open}

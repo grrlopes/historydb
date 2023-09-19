@@ -39,6 +39,7 @@ const Paginator = () => {
       onPageChange={handleChangePage}
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
+      rowsPerPageOptions={[5,10,15,20,25,50,100]}
       size="small"
       sx={{ overflowY: "hidden" }}
     />
