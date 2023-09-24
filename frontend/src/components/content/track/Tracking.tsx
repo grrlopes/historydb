@@ -1,24 +1,18 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useState } from "react";
-import { datas, results } from "../../../helper/interfaces";
-import { getDocuments } from "../../../services/getDocuments";
+import { results } from "../../../helper/interfaces";
 import { HdbContext, HdbType } from "../../../store/hdbCtx";
 import * as S from "./Styles";
+import { Greet } from "../../../../wailsjs/go/backend/App";
+import { meilisearch } from "../../../../wailsjs/go/models";
 
 const Tracking = () => {
   const searcher = useContext<HdbType>(HdbContext);
   const limit = searcher.pager.limit;
   const offset = searcher.pager.offset;
   const [filter, setFilter] = useState<string>("");
-
-  const { data, isLoading, isError } = useQuery<datas>({
-    queryKey: ["documents", { filter, limit, offset }],
-    queryFn: () => {
-      return getDocuments(filter, limit, offset);
-    },
-  });
+  const [data, setData] = useState<meilisearch.SearchResponse>();
 
   const counter = () => {
     if (data?.estimatedTotalHits) {
@@ -31,7 +25,11 @@ const Tracking = () => {
   useEffect(() => {
     setFilter(searcher.filter.search);
     counter();
-  }, [searcher.filter.search, data?.estimatedTotalHits]);
+    (async () => {
+      const result = await Greet(filter, limit, offset);
+      setData(result);
+    })();
+  }, [searcher.filter.search, filter]);
 
   const renderCardContent = (todo: results) => (
     <CardContent sx={{ height: "16em" }}>
@@ -58,8 +56,7 @@ const Tracking = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        {isError && <b>Fetching data error</b>}
-        {!isLoading && data?.hits.map((todo: results) => renderGridItem(todo))}
+        {data?.hits.map((todo: results) => renderGridItem(todo))}
       </Grid>
     </Box>
   );
