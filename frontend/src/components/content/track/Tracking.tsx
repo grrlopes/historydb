@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { results } from "../../../helper/interfaces";
 import { HdbContext, HdbType } from "../../../store/hdbCtx";
 import * as S from "./Styles";
-import { Greet } from "../../../../wailsjs/go/backend/App";
+import { Greet } from "../../../../wailsjs/go/cmd/App";
 import { meilisearch } from "../../../../wailsjs/go/models";
 
 const Tracking = () => {

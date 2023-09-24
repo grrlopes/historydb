@@ -1,4 +1,4 @@
-package backend
+package cmd
 
 import (
 	"context"
@@ -27,7 +27,7 @@ func (a *App) Startup(ctx context.Context) {
 // Greet returns a greeting for the given name
 func (a *App) Greet(search string, limit, offset int64) *meilisearch.SearchResponse {
 	client := meilisearch.NewClient(meilisearch.ClientConfig{
-    Host: "http://localhost:7700",
+		Host: "http://localhost:7700",
 	})
 	fmt.Println(limit, offset)
 	searchRes, err := client.Index("historydb").Search(search,
