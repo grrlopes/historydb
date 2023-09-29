@@ -6,17 +6,18 @@ import (
 )
 
 type execute struct {
-	findRepository repository.IMeilisearch
+	CreateRepository repository.IMeilisearch
 }
 
-func NewFinder(repo repository.IMeilisearch) InputBoundary {
+func NewCreate(repo repository.IMeilisearch) InputBoundary {
 	return execute{
-		findRepository: repo,
+		CreateRepository: repo,
 	}
 }
 
-func (e execute) Execute(data entity.Search) (*entity.SearchResponse, error) {
-	result, err := e.findRepository.FindAll(data)
+func (e execute) Execute(data entity.CreateDocument) (entity.CreateResponse) {
 
-	return result, err
+	result := e.CreateRepository.Create(data)
+
+	return result
 }

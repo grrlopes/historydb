@@ -5,5 +5,5 @@ import (
 )
 
 type InputBoundary interface {
-	Execute(data entity.Search) (*entity.SearchResponse, error)
+	Execute(data entity.CreateDocument) (entity.CreateResponse)
 }
